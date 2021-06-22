@@ -86,7 +86,7 @@ absolutes	signs	            result
 
 */
 
-function solution(absolutes, signs) {
+function test3(absolutes, signs) {
     var answer = absolutes.reduce((a,c,i) => {
         if (signs[i]) {
             a += c;
@@ -97,6 +97,70 @@ function solution(absolutes, signs) {
             return a;
         }
     },0)
+    
+    return answer;
+}
+
+/*
+문제4
+문제 설명
+가로 길이가 Wcm, 세로 길이가 Hcm인 직사각형 종이가 있습니다. 종이에는 가로, 세로 방향과 평행하게 격자 형태로 선이 그어져 있으며, 모든 격자칸은 1cm x 1cm 크기입니다. 이 종이를 격자 선을 따라 1cm × 1cm의 정사각형으로 잘라 사용할 예정이었는데, 누군가가 이 종이를 대각선 꼭지점 2개를 잇는 방향으로 잘라 놓았습니다. 그러므로 현재 직사각형 종이는 크기가 같은 직각삼각형 2개로 나누어진 상태입니다. 새로운 종이를 구할 수 없는 상태이기 때문에, 이 종이에서 원래 종이의 가로, 세로 방향과 평행하게 1cm × 1cm로 잘라 사용할 수 있는 만큼만 사용하기로 하였습니다.
+가로의 길이 W와 세로의 길이 H가 주어질 때, 사용할 수 있는 정사각형의 개수를 구하는 solution 함수를 완성해 주세요.
+
+제한사항
+W, H : 1억 이하의 자연수
+
+입출력 예
+W	H	result
+8	12	80
+
+
+*/
+
+function test4(w, h) {
+    var answer = w*h;
+    let max = Math.max(w,h)
+    let min = Math.min(w,h)
+    
+    function gcd(minNum, maxNum){
+        return (minNum % maxNum) === 0 ? maxNum : gcd(maxNum, minNum % maxNum);
+    }
+    
+    
+    return answer - (w+h-gcd(min,max));
+}
+
+/*
+문제5
+문제 설명
+124 나라가 있습니다. 124 나라에서는 10진법이 아닌 다음과 같은 자신들만의 규칙으로 수를 표현합니다.
+
+124 나라에는 자연수만 존재합니다.
+124 나라에는 모든 수를 표현할 때 1, 2, 4만 사용합니다.
+예를 들어서 124 나라에서 사용하는 숫자는 다음과 같이 변환됩니다.
+
+10진법	124 나라	10진법	124 나라
+1	    1	        6	    14
+2	    2	        7	    21
+3	    4	        8	    22
+4	    11	        9	    24
+5	    12	        10	    41
+자연수 n이 매개변수로 주어질 때, n을 124 나라에서 사용하는 숫자로 바꾼 값을 return 하도록 solution 함수를 완성해 주세요.
+
+제한사항
+n은 500,000,000이하의 자연수 입니다.
+
+
+*/
+
+function test5(n) {
+    let num = [4,1,2]
+    var answer = '';
+    
+    while(n) {
+        answer = num[n%3] + answer;
+        n = (n%3 === 0)? n/3 -1 : Math.floor(n/3)
+    }
     
     return answer;
 }

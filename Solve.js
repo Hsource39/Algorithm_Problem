@@ -18,7 +18,23 @@ function test2(d, budget) {
 
 //test3
 
-function solution(absolutes, signs) {
+function test3(absolutes, signs) {
 
     return absolutes.reduce((acc, val, i) => acc + (val * (signs[i] ? 1 : -1)), 0);
 }
+
+//test4
+
+function test4(w,h){
+    const gcd = (a, b) => {
+        return b === 0 ? a : gcd(b, a % b);
+    };
+
+    return w * h - (w + h - gcd(w, h));
+}
+
+//test5
+
+function test5(n) {
+    return n === 0 ? '' : change124(parseInt((n - 1) / 3)) + [1, 2, 4][(n - 1) % 3];
+  }
